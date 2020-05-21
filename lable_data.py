@@ -23,7 +23,7 @@ for f in range(len(subwayfiles)):
     dataAcc2 = dataAcc2.drop("timestamp", axis=1)
     dfAcc2 = pd.DataFrame(dataAcc2)
 
-    # Lägger till activity och activitylabel
+    # Adds activity and activitylabel
     dfAcc2.loc[:, 'Activity'] = '5'
     dfAcc2.loc[:, 'ActivityName'] = 'SUBWAY'
 
@@ -38,11 +38,11 @@ for f in range(len(carfiles)):
     dataAcc2 = dataAcc2.drop("timestamp", axis=1)
     dfAcc2 = pd.DataFrame(dataAcc2)
 
-    # Lägger till activity och activitylabel
+    # Adds activity och activitylabel
     dfAcc2.loc[:, 'Activity'] = '3'
     dfAcc2.loc[:, 'ActivityName'] = 'DRIVING'
 
-    # Lägger till andra dataframen till första
+    # Adds the second dataframe to the first
     dfAcc = dfAcc.append(dfAcc2, ignore_index=True)
 
 dfAcc = dfAcc.drop(dfAcc.index[range(144998, len(dfAcc.index))])
@@ -56,11 +56,11 @@ for f in range(len(walkingfiles)):
     dataAcc2 = dataAcc2.drop("timestamp", axis=1)
     dfAcc2 = pd.DataFrame(dataAcc2)
 
-    # Lägger till activity och activitylabel
+    # Adds activity and activitylabel
     dfAcc2.loc[:, 'Activity'] = '2'
     dfAcc2.loc[:, 'ActivityName'] = 'WALKING'
 
-    # Lägger till andra dataframen till första
+    # Adds the second dataframe to the first
     dfAcc = dfAcc.append(dfAcc2, ignore_index=True)
 
 dfAcc = dfAcc.drop(dfAcc.index[range(217497, len(dfAcc.index))])
@@ -74,20 +74,14 @@ for f in range(len(standingfiles)):
     dataAcc2 = dataAcc2.drop("timestamp", axis=1)
     dfAcc2 = pd.DataFrame(dataAcc2)
 
-    # Lägger till activity och activitylabel
+    # Adds activity and activitylabel
     dfAcc2.loc[:, 'Activity'] = '1'
     dfAcc2.loc[:, 'ActivityName'] = 'STANDING'
 
-    # Lägger till andra dataframen till första
+    # Adds the second dataframe to the first
     dfAcc = dfAcc.append(dfAcc2, ignore_index=True)
 
 dfAcc = dfAcc.drop(dfAcc.index[range(289996, len(dfAcc.index))])
 print(len(dfAcc.index))
 
-# for i in range(289796, len(dfAcc.index)):
-#     dfAcc = dfAcc.drop(dfAcc.index[i])
-# print(len(dfAcc.index))
-
-print(dfAcc)
-# Skriver dataframen till Accelerometer-Total
 dfAcc.to_csv('Accelerometer-Total.csv')
